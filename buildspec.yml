@@ -27,4 +27,5 @@ artifacts:
   files:
     - '**/*'
   discard-paths: yes
+  name: myname-$(date +%Y-%m-%d)
 
