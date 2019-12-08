@@ -2,4 +2,4 @@
 
 set -e
 
-mv /tmp/VijayJavaHelloWorld.war /usr/share/tomcat8/webapps
+mv /tmp/gameoflife.war /usr/share/tomcat8/webapps
