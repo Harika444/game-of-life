@@ -7,6 +7,9 @@ env:
     #You should use parameter-store here instead
 
 phases:
+  install:
+    runtime-versions:
+      java: corretto8
   build:
     commands:
       - mvn test
