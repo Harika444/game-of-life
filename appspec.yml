@@ -1,20 +1,23 @@
 version: 0.0
 os: linux
 files:
-  - source: /target/gameoflife.war 
-    destination: /tmp/codedeploy-deployment-staging-area/
-  - source: /scripts/configure_http_port.xsl
-    destination: /tmp/codedeploy-deployment-staging-area/
+  - source: /target/gameoflife.war
+    destination: /tmp/
 hooks:
   ApplicationStop:
-    - location: scripts/stop_application
+    - location: scripts/stop_server.sh
+    - location: scripts/undeploy_application.sh
       timeout: 300
+      runas: root
   BeforeInstall:
-    - location: scripts/install_dependencies
+    - location: scripts/install_and_configure_tomcat.sh
       timeout: 300
+      runas: root
   ApplicationStart:
-    - location: scripts/write_codedeploy_config.sh
-    - location: scripts/start_application
+    - location: scripts/deploy_application.sh
+    - location: scripts/start_server.sh
       timeout: 300
+      runas: root
   ValidateService:
-    - location: scripts/basic_health_check.sh
+    - location: scripts/validate_tomcat_is_running.sh
+    - location: scripts/validate_application_is_running.sh
