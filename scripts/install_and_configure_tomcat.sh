@@ -2,6 +2,6 @@
 
 set -e
 
-sudo yum install tomcat8 -y
-chkconfig --level 345 tomcat8 on
-service tomcat8 start 
+sudo yum install tomcat -y
+chkconfig --level 345 tomcat on
+service tomcat start 
