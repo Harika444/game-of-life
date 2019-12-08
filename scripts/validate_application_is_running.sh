@@ -2,6 +2,6 @@
 
 set -e
 
-curl localhost:8080/VijayJavaHelloWorld/index.jsp 2>&1 >/dev/null
+curl localhost:8080/gameoflife/index.jsp 2>&1 >/dev/null
 
 echo "INFO : Application is up and running."
