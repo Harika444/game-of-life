@@ -23,7 +23,7 @@ phases:
       - echo This always runs even if the update or install command fails
   build:
     commands:
-      - mvn clean package sonar:sonar -Dmaven.test.failure.ignore
+      - mvn sonar:sonar 
     finally:
       - echo This always runs even if the install command fails
   post_build:
