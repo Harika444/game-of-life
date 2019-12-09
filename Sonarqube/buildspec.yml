@@ -1,18 +1,16 @@
 version: 0.2
 
 env:
-  variables:
-    SONAR_LOGIN: "34af341fff3ee884f75f2e5acf37ec84bc19371a"
-    SONAR_HOST: "http://54.188.163.81:9000/"
-    #You should use parameter-store here instead
+  parameter-store:
+    SONARQUBE_TOKEN: "SonarQubeToken"
+    SONARQUBE_ENDPOINT: "SonarQubeEndpoint"
 
 phases:
   install:
-    runtime-versions:
-      java: openjdk8
+    commands:
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
+      - unzip sonar-scanner-cli-3.3.0.1492-linux.zip
+      - export PATH=$PATH:./sonar-scanner-3.3.0.1492-linux/bin/
   build:
     commands:
-      - mvn test
-  post_build:
-    commands:
-      - mvn sonar:sonar -Dsonar.login=34af341fff3ee884f75f2e5acf37ec84bc19371a -Dsonar.host.url=http://54.188.163.81:9000
+      - sonar-scanner
