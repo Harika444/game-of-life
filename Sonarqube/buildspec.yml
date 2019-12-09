@@ -23,7 +23,7 @@ phases:
       - echo This always runs even if the update or install command fails
   build:
     commands:
-      - mvn sonar:sonar -Dsonar.host.url=http://54.188.163.81:9000/ -Dsonar.login=feb81bc7c77c0349fd3280bac03acfe5e84e94df
+      - mvn clean package  
     finally:
       - echo This always runs even if the install command fails
   post_build:
