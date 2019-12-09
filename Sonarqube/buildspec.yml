@@ -16,6 +16,7 @@ phases:
       - apt-get update -y
       - apt-get install -y maven
       - rm -rf $MAVEN_HOME/conf/settings.xml
+      - cat Sonarqube/settings.xml
       - cp Sonarqube/settings.xml $MAVEN_HOME/conf/settings.xml
     finally:
       - echo This always runs even if the update or install command fails
