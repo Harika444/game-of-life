@@ -21,3 +21,13 @@ phases:
       - cat $MAVEN_HOME/conf/settings.xml 
     finally:
       - echo This always runs even if the update or install command fails
+  build:
+    commands:
+      - mvn clean verify sonar:sonar -Dmaven.test.failure.ignore
+    finally:
+      - echo This always runs even if the install command fails
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - echo Build completed on `date`
+
