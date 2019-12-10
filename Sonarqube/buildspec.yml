@@ -4,30 +4,19 @@ env:
   parameter-store:
     SONARQUBE_TOKEN: "SonarQubeToken"
     SONARQUBE_ENDPOINT: "SonarQubeEndpoint"
-  variables:
-    JAVA_HOME: "/usr/lib/jvm/java-8-openjdk-amd64"
-    
+
 phases:
   install:
     runtime-versions:
       java: openjdk8
     commands:
-      - echo Entered the install phase...
-      - apt-get update -y
-      - apt-get install -y maven
-      - rm -rf $MAVEN_HOME/conf/settings.xml
-      - cat Sonarqube/settings.xml
-      - cp Sonarqube/settings.xml $MAVEN_HOME/conf/settings.xml
-      - cat $MAVEN_HOME/conf/settings.xml 
-    finally:
-      - echo This always runs even if the update or install command fails
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
+      - unzip sonar-scanner-cli-3.3.0.1492-linux.zip
+      - echo "sonar.host.url=http://54.188.163.81:9000/" >> sonar-scanner-cli-3.3.0.1492-linux/conf/sonar-scanner.properties
+      - cat sonar-scanner-cli-3.3.0.1492-linux/conf/sonar-scanner.properties
+      - export PATH=$PATH:./sonar-scanner-3.3.0.1492-linux/bin/
   build:
     commands:
-      - mvn clean package  
-    finally:
-      - echo This always runs even if the install command fails
-  post_build:
-    commands:
-      - echo Entered the post_build phase...
-      - echo Build completed on `date`
+	- sonar-scanner
+	
 
