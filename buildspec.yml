@@ -11,15 +11,13 @@ phases:
       - echo Entered the install phase...
       - apt-get update -y
       - apt-get install -y maven
-      - rm -rf $MAVEN_HOME/conf/settings.xml
-      - cp Sonarqube/settings.xml $MAVEN_HOME/conf/settings.xml
     finally:
       - echo This always runs even if the update or install command fails
   build:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
-      - mvn install package sonar:sonar -Dmaven.test.failure.ignore
+      - mvn install package -Dmaven.test.failure.ignore
     finally:
       - echo This always runs even if the install command fails
   post_build:
