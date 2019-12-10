@@ -15,6 +15,7 @@ phases:
       - echo "sonar.host.url=http://54.188.163.81:9000/" >> sonar-scanner-cli-3.3.0.1492-linux/conf/sonar-scanner.properties
       - cat sonar-scanner-cli-3.3.0.1492-linux/conf/sonar-scanner.properties
       - export PATH=$PATH:./sonar-scanner-3.3.0.1492-linux/bin/
+     
   build:
     commands:
 	- sonar-scanner
