@@ -1,11 +1,14 @@
 version: 0.2
+env:
+  secrets-manager:
+    SONARQUBE_TOKEN: sonarqube:TOKEN
 
 phases:
   install:
     runtime-versions:
       java: corretto8
     commands:
-      - echo ${SONARQUBE_TOKEN}
+      - echo ${env.SONARQUBE_TOKEN}
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
       - unzip sonar-scanner-cli-3.3.0.1492-linux.zip
       - export PATH=$PATH:./sonar-scanner-3.3.0.1492-linux/bin/
